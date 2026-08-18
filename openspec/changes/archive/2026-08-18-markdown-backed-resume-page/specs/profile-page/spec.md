@@ -7,6 +7,8 @@ The page header SHALL display the owner's name, professional title, and location
 - **WHEN** a visitor loads the landing page
 - **THEN** the header shows "Jeffry Ma", the title "Software Development Manager", the location "Vancouver, BC, Canada", a "LinkedIn" link to `https://www.linkedin.com/in/jef2k85`, and a resume link to `/resume/`
 
+## ADDED Requirements
+
 ### Requirement: Landing page presents a short front-door view, not the full resume
 The landing page SHALL present a hero (name, title, location, links) and a short summary/highlights section, and MAY present additional content that does not belong on a resume (e.g., hobbies, side projects). The landing page SHALL NOT present the full Experience, Skills, or Education & Certifications sections — that detail belongs to the resume page.
 
@@ -41,6 +43,14 @@ At no time SHALL the landing page (`index.html`/`index.md`) or the resume page c
 - **THEN** the audit SHALL flag a violation if it finds an email address, a phone number, or a street address, unit number, or postal/zip code in either surface, citing the specific file and location found — while treating city/region-level location as compliant, not a violation
 
 ## REMOVED Requirements
+
+### Requirement: Page presents summary, experience, skills, and education sections
+**Reason**: The landing page no longer carries the full resume content. The Experience, Skills, and Education & Certifications sections moved to the new `resume-page` capability; the landing page keeps only a hero and short summary.
+**Migration**: See this file's new "Landing page presents a short front-door view, not the full resume" requirement, and the `resume-page` capability's "Resume page presents comprehensive professional history" requirement.
+
+### Requirement: No personal contact details are published anywhere on the site or resume PDF
+**Reason**: The resume PDF has been removed entirely; the equivalent rule is restated for the landing page and, separately, for the resume page.
+**Migration**: See this file's new "No personal contact details are published anywhere on the site" requirement, and the `resume-page` capability's "No personal contact details are published on the resume page" requirement.
 
 ### Requirement: Resume PDF is the source of truth for content consistency
 **Reason**: The PDF (`assets/JeffryMa_Resume.pdf`) has been removed entirely. The resume page (`resume.md`, see the `resume-page` capability) is now the source of truth for professional-history facts.
