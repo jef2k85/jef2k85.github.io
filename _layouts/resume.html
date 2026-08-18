@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/resume.css' | relative_url }}">
+</head>
+<body>
+  <div class="resume-page">
+    <div class="wrap resume-wrap">
+      <header class="resume-header">
+        <h1>{{ site.title }}</h1>
+        <p class="resume-tagline">{{ site.description }}</p>
+        <button class="print-btn no-print" type="button" onclick="window.print()">Print / Save as PDF</button>
+      </header>
+      {{ content }}
+    </div>
+  </div>
+</body>
+</html>

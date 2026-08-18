@@ -28,7 +28,7 @@ The site is a single-page Jekyll site on GitHub Pages (static hosting only — n
 - Drove an 87% reduction...
 ```
 
-Kramdown emits `<h3>`, an `<em>` immediately following it, and a `<ul>` — enough hooks for CSS to style "company/title left, dates right" via adjacent-sibling selectors (`h3 + em`), without needing a templating loop. This was chosen over a `_data/resume.yml` (structured front-matter/data file rendered by a Liquid loop) because the owner explicitly prioritized editing ease ("if my goals can be achieved by markdown, we can use it") and a structured-data + Liquid-loop layout is more machinery than a one-owner, hand-edited site needs. If a future need arises for stricter structural validation or reuse across more than two pages, revisit with `_data/resume.yml`.
+Kramdown emits `<h3>`, a `<p><em>...</em></p>` immediately following it (a standalone italic line becomes its own paragraph), and a `<ul>` — enough hooks for CSS to style the dates line via an adjacent-sibling selector (`h3 + p`), without needing a templating loop. This was chosen over a `_data/resume.yml` (structured front-matter/data file rendered by a Liquid loop) because the owner explicitly prioritized editing ease ("if my goals can be achieved by markdown, we can use it") and a structured-data + Liquid-loop layout is more machinery than a one-owner, hand-edited site needs. If a future need arises for stricter structural validation or reuse across more than two pages, revisit with `_data/resume.yml`.
 
 **Alternative considered**: `_data/resume.yml` with arrays of roles/bullets, looped by `_layouts/resume.html`. Rejected for now — more setup for a single consumer page, and Markdown-first was the stated preference.
 
