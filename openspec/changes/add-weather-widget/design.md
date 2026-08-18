@@ -13,8 +13,9 @@ The site is a fully static Jekyll page hosted on GitHub Pages with no build-time
 - No forecast (multi-day or hourly) — current conditions only.
 - No user-supplied location or geolocation prompt — Vancouver is hardcoded.
 - No visible error/loading UI — failures are silent (widget simply doesn't render).
-- No build step, bundler, or dependency manager — plain `<script>`, no npm.
+- No production build step or bundler for the shipped page — it still loads a plain `<script type="module">`, unaffected by the local-only test tooling below.
 - No caching, retry logic, or offline support.
+- No CI/CD test automation — tests run locally on demand, not gated on push/PR.
 
 ## Decisions
 
@@ -24,6 +25,7 @@ The site is a fully static Jekyll page hosted on GitHub Pages with no build-time
 - **Placement: inside the hero section**, near the existing location line, since the widget is inherently tied to "Vancouver, BC, Canada" already shown there.
 - **Failure mode: silent no-render.** If the fetch fails, times out, or returns unexpected data, the script leaves the placeholder empty (or removes it) rather than showing an error message or a stale cached value. This keeps the non-goal list honest (no caching/retry) and avoids a broken-looking UI state for a low-stakes demo feature.
 - **Styling: new CSS rules added to `assets/css/style.css`**, reusing existing custom properties (`--accent`, `--muted`, `--card-bg`, `--border`) so the widget looks native rather than bolted on.
+- **Testing: Vitest + jsdom, local-only devDependencies.** The widget's logic is split into pure, DOM-light functions (weathercode→text lookup, response parsing, forecast URL building, and a small render function) in `assets/js/weather.js`, unit-tested with Vitest (jsdom environment for the render function) via `npm test`. This is a `devDependency`-only addition — `node_modules/` and `package-lock.json` stay out of the shipped page, there is no build/bundle step for `index.html` itself, and no CI workflow runs these tests automatically; they're a local verification tool. `package.json`/`vitest.config.js` are the only new repo files this requires, and `node_modules/` is added to `.gitignore`.
 - **Condition text: local WMO weather-code lookup table.** Confirmed via a manual `curl` against `https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true` that `current_weather=true` returns `temperature` directly but only a numeric `weathercode` (WMO code, e.g. `0` for clear sky) — no text description. The script needs a small hardcoded code→text map (e.g. `0` → "Clear sky", `61` → "Rain", etc., covering Open-Meteo's documented WMO code set) to satisfy the "short condition description" requirement, rather than relying on a field the API doesn't provide.
 
 ## Risks / Trade-offs
