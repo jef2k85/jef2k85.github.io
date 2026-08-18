@@ -6,8 +6,9 @@
 ## 2. Data fetching
 
 - [ ] 2.1 Add a small script (inline `<script>` or new `assets/js/weather.js`) that calls the Open-Meteo current-weather endpoint with hardcoded Vancouver, BC coordinates
-- [ ] 2.2 Parse the response for current temperature and a short condition description
-- [ ] 2.3 On fetch error, timeout, or unparseable response, leave the placeholder empty and exit without throwing or logging visibly on the page
+- [ ] 2.2 Parse the response for `current_weather.temperature` and `current_weather.weathercode`
+- [ ] 2.3 Add a small hardcoded WMO weathercode → text lookup table (e.g. `0` → "Clear sky", `61` → "Rain") and map the response's numeric code through it, since the API only returns a code, not description text
+- [ ] 2.4 On fetch error, timeout, unparseable response, or an unmapped weathercode, leave the placeholder empty and exit without throwing or logging visibly on the page
 
 ## 3. Rendering
 

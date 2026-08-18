@@ -24,6 +24,7 @@ The site is a fully static Jekyll page hosted on GitHub Pages with no build-time
 - **Placement: inside the hero section**, near the existing location line, since the widget is inherently tied to "Vancouver, BC, Canada" already shown there.
 - **Failure mode: silent no-render.** If the fetch fails, times out, or returns unexpected data, the script leaves the placeholder empty (or removes it) rather than showing an error message or a stale cached value. This keeps the non-goal list honest (no caching/retry) and avoids a broken-looking UI state for a low-stakes demo feature.
 - **Styling: new CSS rules added to `assets/css/style.css`**, reusing existing custom properties (`--accent`, `--muted`, `--card-bg`, `--border`) so the widget looks native rather than bolted on.
+- **Condition text: local WMO weather-code lookup table.** Confirmed via a manual `curl` against `https://api.open-meteo.com/v1/forecast?latitude=49.2827&longitude=-123.1207&current_weather=true` that `current_weather=true` returns `temperature` directly but only a numeric `weathercode` (WMO code, e.g. `0` for clear sky) — no text description. The script needs a small hardcoded code→text map (e.g. `0` → "Clear sky", `61` → "Rain", etc., covering Open-Meteo's documented WMO code set) to satisfy the "short condition description" requirement, rather than relying on a field the API doesn't provide.
 
 ## Risks / Trade-offs
 
