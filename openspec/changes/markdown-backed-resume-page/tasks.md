@@ -20,7 +20,7 @@
 ## 4. Verification
 
 - [x] 4.1 Run the site locally (`bundle exec jekyll serve` or `preview.sh`) and confirm `/` renders the landing page and `/resume/` renders the resume page
-- [ ] 4.2 Use the browser's print preview on `/resume/` to confirm nav/print-button are hidden and the layout is clean and paginated sensibly
-- [ ] 4.3 Check both pages at a 390px viewport width for horizontal overflow, per the responsive requirements in both specs
+- [x] 4.2 Use the browser's print preview on `/resume/` to confirm nav/print-button are hidden and the layout is clean and paginated sensibly
+- [x] 4.3 Check both pages at a 390px viewport width for horizontal overflow, per the responsive requirements in both specs
 - [x] 4.4 Confirm neither page contains an email address, phone number, or street/unit/postal address
 - [x] 4.5 Run an AI-assisted consistency check (e.g., via the reconciling-spec-drift skill) comparing landing page and resume page overlapping facts
