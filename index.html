@@ -8,6 +8,7 @@ title: Jeffry Ma — Software Development Manager
     <h1>Jeffry Ma</h1>
     <p class="title">Software Development Manager</p>
     <p class="location">Vancouver, BC, Canada</p>
+    <p id="weather-widget" class="weather-widget" aria-live="polite"></p>
     <div class="links">
       <a href="https://www.linkedin.com/in/jef2k85" target="_blank" rel="noopener">LinkedIn</a>
       <a class="primary" href="{{ '/resume/' | relative_url }}">View Resume</a>
@@ -31,3 +32,8 @@ title: Jeffry Ma — Software Development Manager
   </footer>
 
 </div>
+
+<script type="module">
+  import { loadWeather } from "{{ '/assets/js/weather.js' | relative_url }}";
+  loadWeather(document.getElementById("weather-widget"));
+</script>

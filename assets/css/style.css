@@ -62,6 +62,21 @@ header.hero .location {
   font-size: 0.95rem;
 }
 
+.weather-widget {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+}
+
+.weather-widget:empty {
+  display: none;
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
